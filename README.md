@@ -16,6 +16,7 @@ This repository documents a web stack infrastructure built as part of the **SysA
 - [web_infrastructure_design/0-simple_web_stack.md](web_infrastructure_design/0-simple_web_stack.md)
 - [web_infrastructure_design/1-distributed_web_infrastructure.md](web_infrastructure_design/1-distributed_web_infrastructure.md)
 - [web_infrastructure_design/2-secured_and_monitored_web_infrastructure.md](web_infrastructure_design/2-secured_and_monitored_web_infrastructure.md)
+- [web_infrastructure_design/3-scale_up.md](web_infrastructure_design/3-scale_up.md)
 
 ## Web stack diagram (concept)
 
