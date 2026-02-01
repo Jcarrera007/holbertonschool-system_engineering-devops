@@ -5,15 +5,26 @@ This design extends a single-server setup into a **distributed** architecture by
 
 ## High-level diagram
 
-```mermaid
-flowchart LR
-	U[User / Browser] -->|DNS: www.foobar.com| LB[Load Balancer (HAProxy)]
-	LB -->|HTTP| S1[Server 1: Web + App]
-	LB -->|HTTP| S2[Server 2: Web + App]
+Some Markdown viewers (and some school checkers) do not render Mermaid diagrams. This ASCII diagram is compatible everywhere:
 
-	S1 -->|DB reads/writes| DBP[(MySQL Primary)]
-	S2 -->|DB reads| DBR[(MySQL Replica)]
-	DBP -->|Replication (one-way)| DBR
+```text
+User / Browser
+	|
+	| DNS: www.foobar.com
+	v
+Load Balancer (HAProxy)
+	|\
+	| \
+	|  \
+	v   v
+Server 1 (Web + App)    Server 2 (Web + App)
+	|        \              |
+	|         \             |
+	v          v            v
+MySQL Primary (writes)   MySQL Replica (reads)
+		   |
+		   v
+   Replication (one-way)
 ```
 
 ## Infrastructure components
@@ -75,10 +86,12 @@ In a **Primary–Replica** cluster:
 ### Primary vs Replica (from the application perspective)
 
 - **Primary** is the source of truth for new/updated data
-	- the application connects here to write data
+
+  - the application connects here to write data
 - **Replica** follows the Primary
-	- the application can connect here to offload read traffic
-	- replication is not bi-directional; changes originate on the Primary
+
+  - the application can connect here to offload read traffic
+  - replication is not bi-directional; changes originate on the Primary
 
 ## Infrastructure issues
 
