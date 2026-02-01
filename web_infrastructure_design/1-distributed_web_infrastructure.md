@@ -3,6 +3,14 @@
 
 This design extends a single-server setup into a **distributed** architecture by adding a **load balancer** and a **second application server**. The main goals are to improve capacity (handle more traffic) and increase availability (keep working if one server fails).
 
+## Additional elements added (and why)
+
+Compared to a single-server web stack, this version adds:
+
+- **Load balancer (HAProxy)**: distributes incoming traffic across multiple backend servers to improve performance and availability.
+- **A second backend server**: provides redundancy (one server can fail while the other still serves requests) and increases total capacity.
+- **A Primary-Replica database setup**: separates reads from writes to improve read scalability and provides a copy of the data on the Replica.
+
 ## Infrastructure components
 
 ### What was added (and why)
@@ -52,9 +60,9 @@ This approach is simple and works well when both servers have similar capacity.
 
 ## Database cluster configuration
 
-### How Primary–Replica (Master–Slave) works
+### How a Primary-Replica (Master-Slave) cluster works
 
-In a **Primary–Replica** cluster:
+In a **Primary-Replica** cluster:
 - the **Primary** database handles all **writes** (INSERT/UPDATE/DELETE)
 - the **Replica** database is used for **reads** (SELECT)
 - data is copied from Primary to Replica via **one-way replication** (Primary → Replica)

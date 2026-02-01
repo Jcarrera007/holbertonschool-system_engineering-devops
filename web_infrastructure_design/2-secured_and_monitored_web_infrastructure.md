@@ -3,6 +3,14 @@
 
 This design builds on a distributed setup by adding **security controls** (firewalls + HTTPS) and **observability** (monitoring). The goal is to reduce risk while making the system easier to operate and troubleshoot.
 
+## Additional elements added (and why)
+
+Compared to a basic distributed setup (load balancer + multiple servers), this version adds:
+
+- **Firewalls**: restrict inbound/outbound traffic so only required ports/services are reachable.
+- **HTTPS (TLS certificates + configuration)**: encrypt user traffic and provide authenticity/integrity.
+- **Monitoring system + monitoring agents**: collect metrics/logs so you can detect issues early, track performance, and alert on incidents.
+
 ## High-level diagram (ASCII)
 
 ```text
@@ -63,7 +71,7 @@ Those agents:
 
 ### How to monitor your web server QPS
 
-To monitor **QPS (queries/requests per second)**, you generally:
+To monitor **QPS (requests per second)** on your web server tier, you generally:
 
 1. Install a monitoring agent on the web servers.
 2. Configure request counting (for example, by exporting web server metrics or parsing access logs).

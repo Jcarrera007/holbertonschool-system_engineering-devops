@@ -20,7 +20,7 @@ Instead of typing an IP address, users access the site using **www.foobar.com**,
 
 ### What type of DNS record is `www.foobar.com`?
 
-`www.foobar.com` uses an **A record**.
+`www` is the host/subdomain label in `www.foobar.com`, and it is typically pointed to an IPv4 address using an **A record**.
 
 An **A record** maps a domain name to an IPv4 address.
 
