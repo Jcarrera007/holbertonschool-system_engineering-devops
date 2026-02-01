@@ -3,30 +3,6 @@
 
 This design extends a single-server setup into a **distributed** architecture by adding a **load balancer** and a **second application server**. The main goals are to improve capacity (handle more traffic) and increase availability (keep working if one server fails).
 
-## High-level diagram
-
-Some Markdown viewers (and some school checkers) do not render Mermaid diagrams. This ASCII diagram is compatible everywhere:
-
-```text
-User / Browser
-	|
-	| DNS: www.foobar.com
-	v
-Load Balancer (HAProxy)
-	|\
-	| \
-	|  \
-	v   v
-Server 1 (Web + App)    Server 2 (Web + App)
-	|        \              |
-	|         \             |
-	v          v            v
-MySQL Primary (writes)   MySQL Replica (reads)
-		   |
-		   v
-   Replication (one-way)
-```
-
 ## Infrastructure components
 
 ### What was added (and why)
